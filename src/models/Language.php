@@ -2,8 +2,10 @@
 
 namespace Itstructure\AdminModule\models;
 
-use Itstructure\AdminModule\interfaces\ModelInterface;
-use Itstructure\FieldWidgets\interfaces\{LanguageListInterface, LanguageFieldInterface};
+use Itstructure\FieldWidgets\interfaces\{
+    LanguageListInterface,
+    LanguageFieldInterface
+};
 
 /**
  * This is the model class for table "language".
@@ -20,8 +22,9 @@ use Itstructure\FieldWidgets\interfaces\{LanguageListInterface, LanguageFieldInt
  *
  * @author Andrey Girnik <girnikandrey@gmail.com>
  */
-class Language extends ActiveRecord implements LanguageListInterface, LanguageFieldInterface, ModelInterface
+class Language extends ActiveRecord implements LanguageListInterface, LanguageFieldInterface
 {
+
     /**
      * @inheritdoc
      */
@@ -36,41 +39,12 @@ class Language extends ActiveRecord implements LanguageListInterface, LanguageFi
     public function rules()
     {
         return [
-            [
-                ['default'],
-                'integer',
-            ],
-            [
-                [
-                    'created_at',
-                    'updated_at',
-                ],
-                'safe',
-            ],
-			[
-                [
-                    'locale',
-                    'shortName',
-                    'name',
-                ],
-
-                'required',
-            ],
-            [
-                'locale',
-                'string',
-                'max' => 8,
-            ],
-            [
-                'shortName',
-                'string',
-                'max' => 3,
-            ],
-            [
-                'name',
-                'string',
-                'max' => 64,
-            ],
+            [['default'], 'integer',],
+            [['created_at', 'updated_at',], 'safe',],
+            [['locale', 'shortName', 'name',], 'required',],
+            ['locale', 'string', 'max' => 8,],
+            ['shortName', 'string', 'max' => 3,],
+            ['name', 'string', 'max' => 64,],
         ];
     }
 
@@ -80,11 +54,11 @@ class Language extends ActiveRecord implements LanguageListInterface, LanguageFi
     public function attributeLabels()
     {
         return [
-            'id'         => 'ID',
-            'shortName'  => 'Short name',
-            'name'       => 'Name',
-            'locale'     => 'Locale',
-            'default'    => 'Default',
+            'id' => 'ID',
+            'shortName' => 'Short name',
+            'name' => 'Name',
+            'locale' => 'Locale',
+            'default' => 'Default',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
@@ -102,10 +76,10 @@ class Language extends ActiveRecord implements LanguageListInterface, LanguageFi
         if ($this->default == 1) {
 
             $default = static::findOne([
-                'default' => 1,
+                    'default' => 1,
             ]);
 
-            if (null !== $default){
+            if (null !== $default) {
                 $default->default = 0;
                 $default->save();
             }
@@ -122,10 +96,10 @@ class Language extends ActiveRecord implements LanguageListInterface, LanguageFi
     public static function getDefaultLanguage()
     {
         return static::find()
-            ->where([
-                'default' => 1
-            ])
-            ->one();
+                ->where([
+                    'default' => 1
+                ])
+                ->one();
     }
 
     /**

@@ -19,7 +19,7 @@ Yii2 Admin module
 2 Dependencies
 ----------------------------
 
-- php >= 7.1
+- php >= 7.0
 - composer
 - MySql >= 5.5
 
@@ -76,7 +76,7 @@ use Itstructure\AdminModule\components\AdminView;
                 'class' => AdminView::class,
                 'skin' => AdminView::SKIN_GREEN_LIGHT,
                 'bodyLayout' => AdminView::LAYOUT_SIDEBAR_MINI,
-                'mainMenuConfig' => require __DIR__ . '/main-menu.php'
+                'mainMenuConfig' => require __DIR__ . '/main-menu.php',
                 'extraAssets' => require __DIR__ . '/extra-assets.php',
             ],
         ],

@@ -1,4 +1,9 @@
 ### CHANGE LOG:
+**1.6.2 April 08, 2019:**
+- Added translations for French language
+- Lowered php required version to 7.0
+- Added default web config to make this package compatible with hiqdev/composer-config-plugin
+ and added extra config section in composer.json to make this package compatible with hiqdev/composer-config-plugin
 
 **1.6.2 February 24, 2019:**
 - in ```MultilanguageValidateModel``` class the **mainModelAttributes()** method checking is added to check its presence in main model.
